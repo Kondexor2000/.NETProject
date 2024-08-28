@@ -1,0 +1,82 @@
+@model MyApp.Models.Posts
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-danger:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Delete Post</h2>
+        <form id="deletePostForm" asp-action="DeletePostConfirmed" method="post">
+            <input type="hidden" name="PostId" value="@Model.PostId" />
+            <p>Are you sure you want to delete this post?</p>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Yes, Delete This Post</button>
+                <a href="@Url.Action("Index", "Post")" class="btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('deletePostForm').addEventListener('submit', function(event) {
+            if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

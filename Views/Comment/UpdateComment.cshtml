@@ -1,0 +1,85 @@
+@model MyApp.ViewModels.CommentUpdateView
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Comment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Comment</h2>
+        <form asp-action="UpdateComment" method="post">
+            <input type="hidden" name="SelectedPostId" value="@Model.SelectedPostId" />
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input id="title" name="Title" type="text" class="form-control" value="@Model.Title" required />
+            </div>
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+        <a href="@Url.Action("ReadComment", new { id = Model.SelectedPostId })" class="btn">Cancel</a>
+    </div>
+</body>
+</html>

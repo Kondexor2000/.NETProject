@@ -1,0 +1,73 @@
+@model IEnumerable<MyApp.Models.Posts>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .post {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Posts</h2>
+        @foreach (var post in Model)
+        {
+            <div class="post">
+                <h3>@post.Title</h3>
+                <p>@post.Description</p>
+                <a href="@Url.Action("ReadPost", new { id = post.Id })" class="btn">Read More</a>
+            </div>
+        }
+        <a href="@Url.Action("CreatePost", "Post")" class="btn">Create New Post</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.post').forEach(function(post) {
+            post.addEventListener('mouseover', function() {
+                post.style.backgroundColor = '#e9ecef';
+            });
+            post.addEventListener('mouseout', function() {
+                post.style.backgroundColor = '#f9f9f9';
+            });
+        });
+    </script>
+</body>
+</html>
